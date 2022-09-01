@@ -132,6 +132,10 @@ class FCNMaskHead(BaseModule):
             x = self.upsample(x)
             if self.upsample_method == 'deconv':
                 x = self.relu(x)
+        if self.upsample is not None:
+            x = self.upsample(x)
+            if self.upsample_method == 'deconv':
+                x = self.relu(x)
         mask_pred = self.conv_logits(x)
         return mask_pred
 
